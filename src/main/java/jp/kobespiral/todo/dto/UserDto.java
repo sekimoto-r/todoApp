@@ -2,16 +2,21 @@ package jp.kobespiral.todo.dto;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+
 import jp.kobespiral.todo.entity.User;
-import jp.kobespiral.todo.form.UserForm;
 import lombok.Data;
 
 @Data
 public class UserDto {
+    @Pattern(regexp = "[0-9a-zA-Z]+")
     private String uid;
-    private String name;
-    private Date createdAt;
 
+    @NotBlank
+    private String name;
+
+    private Date createdAt;
 
     public static UserDto toDtoFromEntity(User user) {
         UserDto userDto = new UserDto();
@@ -22,11 +27,11 @@ public class UserDto {
     }
 
     // public static UserDto toDtoFromForm(UserForm userForm) {
-    //     UserDto userDto = new UserDto();
-    //     userDto.setUid(userForm.getUid());
-    //     userDto.setName(userForm.getName());
-    //     userDto.setCreatedAt(userForm.getCreatedAt());
-    //     return userDto;
+    // UserDto userDto = new UserDto();
+    // userDto.setUid(userForm.getUid());
+    // userDto.setName(userForm.getName());
+    // userDto.setCreatedAt(userForm.getCreatedAt());
+    // return userDto;
     // }
 
 }
